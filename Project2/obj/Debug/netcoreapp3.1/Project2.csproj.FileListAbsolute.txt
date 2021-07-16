@@ -11,3 +11,16 @@ C:\Users\kathe\OneDrive\School\Fourth Semester\Declarative Languages\Project2\Pr
 C:\Users\kathe\OneDrive\School\Fourth Semester\Declarative Languages\Project2\Project2\obj\Debug\netcoreapp3.1\Project2.dll
 C:\Users\kathe\OneDrive\School\Fourth Semester\Declarative Languages\Project2\Project2\obj\Debug\netcoreapp3.1\Project2.pdb
 C:\Users\kathe\OneDrive\School\Fourth Semester\Declarative Languages\Project2\Project2\obj\Debug\netcoreapp3.1\Project2.genruntimeconfig.cache
+C:\$$Visual_Workspace02\DecLangProject2\Project2\bin\Debug\netcoreapp3.1\Project2.exe
+C:\$$Visual_Workspace02\DecLangProject2\Project2\bin\Debug\netcoreapp3.1\Project2.deps.json
+C:\$$Visual_Workspace02\DecLangProject2\Project2\bin\Debug\netcoreapp3.1\Project2.runtimeconfig.json
+C:\$$Visual_Workspace02\DecLangProject2\Project2\bin\Debug\netcoreapp3.1\Project2.runtimeconfig.dev.json
+C:\$$Visual_Workspace02\DecLangProject2\Project2\bin\Debug\netcoreapp3.1\Project2.dll
+C:\$$Visual_Workspace02\DecLangProject2\Project2\bin\Debug\netcoreapp3.1\Project2.pdb
+C:\$$Visual_Workspace02\DecLangProject2\Project2\obj\Debug\netcoreapp3.1\Project2.csproj.AssemblyReference.cache
+C:\$$Visual_Workspace02\DecLangProject2\Project2\obj\Debug\netcoreapp3.1\Project2.AssemblyInfoInputs.cache
+C:\$$Visual_Workspace02\DecLangProject2\Project2\obj\Debug\netcoreapp3.1\Project2.AssemblyInfo.cs
+C:\$$Visual_Workspace02\DecLangProject2\Project2\obj\Debug\netcoreapp3.1\Project2.csproj.CoreCompileInputs.cache
+C:\$$Visual_Workspace02\DecLangProject2\Project2\obj\Debug\netcoreapp3.1\Project2.dll
+C:\$$Visual_Workspace02\DecLangProject2\Project2\obj\Debug\netcoreapp3.1\Project2.pdb
+C:\$$Visual_Workspace02\DecLangProject2\Project2\obj\Debug\netcoreapp3.1\Project2.genruntimeconfig.cache

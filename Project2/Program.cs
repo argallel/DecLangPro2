@@ -15,11 +15,32 @@ namespace Project2
 {
     class Program
     {
+
+        //Variables
+        public static string userInput = "";
+        public static string selectedRegion = "";
+        public static string selectedSource = "";
+        public static int startYear = 2015;
+        public static int endYear = 2019;
+
         const string XML_FILE = "ghg-canada.xml";
         static void Main(string[] args)
         {
+            //print initial title
+            Proj2Toolbox.printTitle();
 
-            //notes from roland!
+            //Console UI
+            Proj2Toolbox.printMainMenu();
+
+
+
+
+
+
+
+
+
+
             try
             {
                 XmlDocument doc = new XmlDocument();
