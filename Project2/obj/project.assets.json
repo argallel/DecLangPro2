@@ -8,23 +8,26 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\kathe\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\Sirus CPA Laptop\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kathe\\OneDrive\\School\\Fourth Semester\\Declarative Languages\\Project2\\Project2\\Project2.csproj",
+      "projectUniqueName": "C:\\$$Visual_Workspace02\\DecLangProject2\\Project2\\Project2.csproj",
       "projectName": "Project2",
-      "projectPath": "C:\\Users\\kathe\\OneDrive\\School\\Fourth Semester\\Declarative Languages\\Project2\\Project2\\Project2.csproj",
-      "packagesPath": "C:\\Users\\kathe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kathe\\OneDrive\\School\\Fourth Semester\\Declarative Languages\\Project2\\Project2\\obj\\",
+      "projectPath": "C:\\$$Visual_Workspace02\\DecLangProject2\\Project2\\Project2.csproj",
+      "packagesPath": "C:\\Users\\Sirus CPA Laptop\\.nuget\\packages\\",
+      "outputPath": "C:\\$$Visual_Workspace02\\DecLangProject2\\Project2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\kathe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sirus CPA Laptop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -60,18 +63,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.1.13, 3.1.13]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

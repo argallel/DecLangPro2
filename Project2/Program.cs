@@ -18,6 +18,8 @@ namespace Project2
         const string XML_FILE = "ghg-canada.xml";
         static void Main(string[] args)
         {
+
+            //notes from roland!
             try
             {
                 XmlDocument doc = new XmlDocument();
