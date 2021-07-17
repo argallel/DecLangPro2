@@ -72,6 +72,44 @@ namespace Project2
 
         public static void adjustYears()
         {
+            while (true)
+            {
+                Console.Write("Starting year (1990 to 2019: ");
+                string temp = Console.ReadLine();
+
+                if(int.TryParse(temp, out int num) && num >= 1990 && num < 2020)
+                {
+                    Program.startYear = num;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("ERROR: starting year must be between 1990 and 2019.");
+                }
+            }
+
+            while (true)
+            {
+                Console.Write("Ending year (1990 to 2019: ");
+                string temp = Console.ReadLine();
+
+                if (int.TryParse(temp, out int num) && num >= 1990 && num < 2020)
+                {
+                    if(num - Program.startYear <= 5 && num - Program.startYear >= 0)
+                    {
+                        Program.endYear = num;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("ERROR: Ending year must be within 5 years following the starting date.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("ERROR: starting year must be between 1990 and 2019.");
+                }
+            }
 
         }
 
@@ -183,12 +221,14 @@ namespace Project2
             }
 
             //print selected data.
-            string queryText = "//region[attribute::name='" + Program.selectedRegion + "']";
+            string queryText = "//region[@name='" + Program.selectedRegion + "']/source/emissions[@year <=" + Program.startYear + " and @year < " + Program.endYear + "]";
             XPathNodeIterator nodeIt = Program.nav.Select(queryText);
+
+            Console.WriteLine("Region: " + Program.selectedRegion);
 
             while (nodeIt.MoveNext())
             {
-                Console.WriteLine("Print a line");
+                Console.WriteLine(nodeIt.Current.Value);
             }
         }
 
@@ -264,6 +304,15 @@ namespace Project2
             }
 
             //print selected data.
+            string queryText = "//region/source[@description = '" + Program.selectedSource + "']/emissions[@year <=" + Program.startYear + " and @year < " + Program.endYear + "]";
+            XPathNodeIterator sourceDataNode = Program.nav.Select(queryText);
+
+            Console.WriteLine("Source: " + Program.selectedSource);
+
+            while (sourceDataNode.MoveNext())
+            {
+                Console.WriteLine(sourceDataNode.Current.Value);
+            }
 
         }
 

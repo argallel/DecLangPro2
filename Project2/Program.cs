@@ -45,6 +45,10 @@ namespace Project2
             {
                 Console.WriteLine($"DOM ERROR: {ex.Message}");
             }
+            catch (XPathException ex)
+            {
+                Console.WriteLine($"PATH ERROR: {ex.Message}");
+            }
             catch (Exception ex)
             {
                 Console.WriteLine($"GENERAL ERROR: {ex.Message}");
