@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.XPath;
 //holding for future use
 ////Console.WriteLine($"{"Marks Earned",12:F1}{"Out Of",15:F1}{"Percent",15:F1}{"Course Marks",15:F1}{"Weight/100",15:F1}");
 
@@ -175,7 +176,14 @@ namespace Project2
             }
 
             //print selected data.
+            XPathNavigator nav = Program.doc.CreateNavigator();
+            string queryText = "//region[attribute::name='" + Program.selectedRegion + "']";
+            XPathNodeIterator nodeIt = nav.Select(queryText);
 
+            while (nodeIt.MoveNext())
+            {
+                //Print node
+            }
         }
 
         public static void selectGHGSrc()

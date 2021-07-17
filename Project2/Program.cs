@@ -22,29 +22,23 @@ namespace Project2
         public static string selectedSource = "";
         public static int startYear = 2015;
         public static int endYear = 2019;
+        public static XmlDocument doc;
 
         const string XML_FILE = "ghg-canada.xml";
         static void Main(string[] args)
         {
-            //print initial title
-            Proj2Toolbox.printTitle();
-
-            //Console UI
-            Proj2Toolbox.printMainMenu();
-
-
-
-
-
-
-
-
-
+         
 
             try
             {
-                XmlDocument doc = new XmlDocument();
+                doc = new XmlDocument();
                 doc.Load(XML_FILE);
+
+                //print initial title
+                Proj2Toolbox.printTitle();
+
+                //Console UI
+                Proj2Toolbox.printMainMenu();
             }
             catch (XmlException ex)
             {
