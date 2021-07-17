@@ -39,7 +39,7 @@ namespace Project2
                 nav = Program.doc.CreateNavigator();
 
                 //Console UI
-                Proj2Toolbox.printMainMenu();
+                Proj2Toolbox.PrintMainMenu();
             }
             catch (XmlException ex)
             {

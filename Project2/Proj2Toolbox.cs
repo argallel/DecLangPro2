@@ -11,12 +11,12 @@ namespace Project2
     class Proj2Toolbox
     {
 
-        public static void printMainMenu()
+        public static void PrintMainMenu()
         {
 
             while (true)
             {
-                printTitle();
+                PrintTitle();
 
                 Console.WriteLine("'Y' to adjust the range of years");
                 Console.WriteLine("'R' to select a region");
@@ -32,18 +32,18 @@ namespace Project2
 
                     if (Program.userInput == "Y")
                     {
-                        adjustYears();
+                        AdjustYears();
                         valid = true;
                     }
                     else if (Program.userInput == "R")
                     {
-                        selectRegion();
+                        SelectRegion();
                         valid = true;
                     }
 
                     else if (Program.userInput == "S")
                     {
-                        selectGHGSrc();
+                        SelectGHGSrc();
                         valid = true;
                     }
 
@@ -64,13 +64,13 @@ namespace Project2
             }
         }
 
-        public static void printTitle()
+        public static void PrintTitle()
         {
             Console.WriteLine("Greenhouse Gas Emissions in Canada");
             Console.WriteLine("==================================\n");
         }
 
-        public static void adjustYears()
+        public static void AdjustYears()
         {
             while (true)
             {
@@ -113,7 +113,7 @@ namespace Project2
 
         }
 
-        public static void selectRegion()
+        public static void SelectRegion()
         {
             string queryTexts = "//region/@name";
             XPathNodeIterator regionNameNode = Program.nav.Select(queryTexts);
@@ -125,7 +125,6 @@ namespace Project2
             while (regionNameNode.MoveNext())
             {
                 Console.WriteLine($"{counter,3}. {regionNameNode.Current.Value}");
-
                 counter++;
             }
 
@@ -227,35 +226,39 @@ namespace Project2
             queryText = "//region[1]/source/@description";
             XPathNodeIterator sourceTypeNode = Program.nav.Select(queryText);
 
-            Console.WriteLine("Region: " + Program.selectedRegion);
+            string title = "\nEmissions in " + Program.selectedRegion + " (Megatonnes)";
 
-            Console.WriteLine();
+            DymanicTitle(title);
 
-            Console.Write("                             Source");
+            Console.Write($"\n{"Source", 54}");
 
             for (int i = Program.startYear; i <= Program.endYear; i++)
             {
                 Console.Write($"{i,9}");
             }
 
-            Console.WriteLine();
+            Console.WriteLine("\n");
 
             while (sourceTypeNode.MoveNext())
             {
-                Console.WriteLine("                      " + sourceTypeNode.Current.Value);
+                Console.Write($"{sourceTypeNode.Current.Value, 54}");
 
-                //for (int i = Program.startYear; i <= Program.endYear; i++)
-                //{
-                //    Console.Write($"{i,9}");
-                //}
+                for (int i = Program.startYear; i <= Program.endYear; i++)
+                {
+                    Console.Write($"{"Numbers",9}");
+                }
 
+                Console.WriteLine();
             }
         }
 
-        public static void selectGHGSrc()
+        public static void SelectGHGSrc()
         {
             string sourceQuery = "//region[1]/source/@description";
             XPathNodeIterator sourceTypeNode = Program.nav.Select(sourceQuery);
+
+            sourceQuery = "//region/@name";
+            XPathNodeIterator regionNameNode = Program.nav.Select(sourceQuery);
 
             int counter = 1;
 
@@ -327,15 +330,50 @@ namespace Project2
             string queryText = "//region/source[@description = '" + Program.selectedSource + "']/emissions[@year <=" + Program.startYear + " and @year < " + Program.endYear + "]";
             XPathNodeIterator sourceDataNode = Program.nav.Select(queryText);
 
-            Console.WriteLine("Source: " + Program.selectedSource);
+            string title = "\nEmissions from " + Program.selectedSource + " (Megatonnes)";
+            DymanicTitle(title);
 
-            while (sourceDataNode.MoveNext())
+            Console.Write($"\n{"Region",54}");
+
+            for (int i = Program.startYear; i <= Program.endYear; i++)
             {
-                Console.WriteLine(sourceDataNode.Current.Value);
+                Console.Write($"{i,9}");
             }
+
+            Console.WriteLine("\n");
+
+            while (regionNameNode.MoveNext())
+            {
+                Console.Write($"{regionNameNode.Current.Value,54}");
+
+                for (int i = Program.startYear; i <= Program.endYear; i++)
+                {
+                    //"Numbers" being where the value is printed
+                    Console.Write($"{"Numbers",9}");
+                }
+
+                Console.WriteLine();
+            }
+
+
+
+            //while (sourceDataNode.MoveNext())
+            //{
+            //    Console.WriteLine(sourceDataNode.Current.Value);
+            //}
 
         }
 
+        public static void DymanicTitle(string title)
+        {
+            Console.WriteLine(title);
+            for (int i = 1; i < title.Length; i++)
+            {
+                Console.Write("-");
+            }
+
+            Console.WriteLine();
+        }
 
     }
 }
