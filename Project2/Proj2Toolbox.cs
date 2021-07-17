@@ -176,9 +176,8 @@ namespace Project2
             }
 
             //print selected data.
-            XPathNavigator nav = Program.doc.CreateNavigator();
             string queryText = "//region[attribute::name='" + Program.selectedRegion + "']";
-            XPathNodeIterator nodeIt = nav.Select(queryText);
+            XPathNodeIterator nodeIt = Program.nav.Select(queryText);
 
             while (nodeIt.MoveNext())
             {

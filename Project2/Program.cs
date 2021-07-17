@@ -10,6 +10,7 @@
 
 using System;
 using System.Xml;
+using System.Xml.XPath;
 
 namespace Project2
 {
@@ -23,6 +24,7 @@ namespace Project2
         public static int startYear = 2015;
         public static int endYear = 2019;
         public static XmlDocument doc;
+        public static XPathNavigator nav;
 
         const string XML_FILE = "ghg-canada.xml";
         static void Main(string[] args)
@@ -33,6 +35,8 @@ namespace Project2
             {
                 doc = new XmlDocument();
                 doc.Load(XML_FILE);
+
+                nav = Program.doc.CreateNavigator();
 
                 //print initial title
                 Proj2Toolbox.printTitle();
