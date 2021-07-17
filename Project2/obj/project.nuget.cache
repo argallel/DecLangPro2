@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mGN0dssCN3k8yjttnBTY34eDfmQaUN/MXGuLEHRA14T2H9wfWGF9VgzUS8iAnzFsFmhtAuIuHvMmOPtc8okCXA==",
+  "dgSpecHash": "A22GCXvpugjslq40VWpjbYyPbMC4+VfohNiEoq29TmXrTMu9zBI4XvyqGmK3YOPa0kTyq7DYML37S74TpPlZNg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kathe\\OneDrive\\School\\Fourth Semester\\Declarative Languages\\Project2\\Project2\\Project2.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\kathe\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.13\\microsoft.netcore.app.host.win-x64.3.1.13.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\$$Visual_Workspace02\\DecLangProject2\\Project2\\Project2.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

@@ -224,11 +224,31 @@ namespace Project2
             string queryText = "//region[@name='" + Program.selectedRegion + "']/source/emissions[@year <=" + Program.startYear + " and @year < " + Program.endYear + "]";
             XPathNodeIterator nodeIt = Program.nav.Select(queryText);
 
+            queryText = "//region[1]/source/@description";
+            XPathNodeIterator sourceTypeNode = Program.nav.Select(queryText);
+
             Console.WriteLine("Region: " + Program.selectedRegion);
 
-            while (nodeIt.MoveNext())
+            Console.WriteLine();
+
+            Console.Write("                             Source");
+
+            for (int i = Program.startYear; i <= Program.endYear; i++)
             {
-                Console.WriteLine(nodeIt.Current.Value);
+                Console.Write($"{i,9}");
+            }
+
+            Console.WriteLine();
+
+            while (sourceTypeNode.MoveNext())
+            {
+                Console.WriteLine("                      " + sourceTypeNode.Current.Value);
+
+                //for (int i = Program.startYear; i <= Program.endYear; i++)
+                //{
+                //    Console.Write($"{i,9}");
+                //}
+
             }
         }
 
