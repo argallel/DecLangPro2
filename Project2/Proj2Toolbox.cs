@@ -13,44 +13,54 @@ namespace Project2
 
         public static void printMainMenu()
         {
-            Console.WriteLine("'Y' to adjust the range of years");
-            Console.WriteLine("'R' to select a region");
-            Console.WriteLine("'S' to select a specific GHG source");
-            Console.WriteLine("'X' to exit the program");
 
-            bool valid = false;
-
-            while (!valid)
+            while (true)
             {
-                Console.Write("Your Selection: ");
-                Program.userInput = Console.ReadLine();
+                printTitle();
 
-                if (Program.userInput == "Y")
+                Console.WriteLine("'Y' to adjust the range of years");
+                Console.WriteLine("'R' to select a region");
+                Console.WriteLine("'S' to select a specific GHG source");
+                Console.WriteLine("'X' to exit the program");
+
+                bool valid = false;
+
+                while (!valid)
                 {
-                    adjustYears();
-                    valid = true;
-                }
-                else if (Program.userInput == "R")
-                {
-                    selectRegion();
-                    valid = true;
+                    Console.Write("Your Selection: ");
+                    Program.userInput = Console.ReadLine();
+
+                    if (Program.userInput == "Y")
+                    {
+                        adjustYears();
+                        valid = true;
+                    }
+                    else if (Program.userInput == "R")
+                    {
+                        selectRegion();
+                        valid = true;
+                    }
+
+                    else if (Program.userInput == "S")
+                    {
+                        selectGHGSrc();
+                        valid = true;
+                    }
+
+                    else if (Program.userInput == "X")
+                    {
+                        Console.WriteLine("\nClosing application...");
+                        System.Environment.Exit(1);
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nERROR: Input must be one of the above options.");
+                    }
                 }
 
-                else if (Program.userInput == "S")
-                {
-                    selectGHGSrc();
-                    valid = true;
-                }
-
-                else if (Program.userInput == "X")
-                {
-                    Console.WriteLine("\nClosing application...");
-                    System.Environment.Exit(1);
-                }
-                else
-                {
-                    Console.WriteLine("\nERROR: Input must be one of the above options.");
-                }
+                Console.WriteLine("\nPress any key to continue...");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
 
@@ -67,28 +77,25 @@ namespace Project2
 
         public static void selectRegion()
         {
+            string queryTexts = "//region/@name";
+            XPathNodeIterator regionNameNode = Program.nav.Select(queryTexts);
+
+            int counter = 1;
+
             Console.WriteLine("\nSelect a region by number as shown below...");
-            Console.WriteLine("1. Alberta");
-            Console.WriteLine("2. British Columbia");
-            Console.WriteLine("3. Manitoba");
-            Console.WriteLine("4. New Brunswick");
-            Console.WriteLine("5. Newfoundland and Labrador");
-            Console.WriteLine("6. Northwest Territories");
-            Console.WriteLine("7. Northwest Territories and Nunavut");
-            Console.WriteLine("8. Nova Scotia");
-            Console.WriteLine("9. Nunavut");
-            Console.WriteLine("10. Ontario");
-            Console.WriteLine("11. Prince Edward Island");
-            Console.WriteLine("12. Quebec");
-            Console.WriteLine("13. Saskatchewan");
-            Console.WriteLine("14. Yukon");
-            Console.WriteLine("15. Canada\n");
+
+            while (regionNameNode.MoveNext())
+            {
+                Console.WriteLine($"{counter,3}. {regionNameNode.Current.Value}");
+
+                counter++;
+            }
 
             bool valid = false;
 
             while (!valid)
             {
-                Console.Write("Enter a region #: ");
+                Console.Write("\nEnter a region #: ");
 
                 string input = Console.ReadLine();
 
@@ -181,21 +188,24 @@ namespace Project2
 
             while (nodeIt.MoveNext())
             {
-                //Print node
+                Console.WriteLine("Print a line");
             }
         }
 
         public static void selectGHGSrc()
         {
-            Console.WriteLine("\nSelect a source by number as shown below...");
-            Console.WriteLine("1. Agriculture");
-            Console.WriteLine("2. Buildings");
-            Console.WriteLine("3. Heavy Industry");
-            Console.WriteLine("4. Light Manufacturing, Construction and Forest Resources");
-            Console.WriteLine("5. Oil and Gas");
-            Console.WriteLine("6. Transport");
-            Console.WriteLine("7. Waste");
-            Console.WriteLine("8. Total");
+            string sourceQuery = "//region[1]/source/@description";
+            XPathNodeIterator sourceTypeNode = Program.nav.Select(sourceQuery);
+
+            int counter = 1;
+
+            Console.WriteLine("\nSelect a region by number as shown below...");
+
+            while (sourceTypeNode.MoveNext())
+            {
+                Console.WriteLine($"{counter , 3}. {sourceTypeNode.Current.Value}");
+                counter++;
+            }
 
             bool valid = false;
 

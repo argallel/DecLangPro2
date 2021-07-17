@@ -38,9 +38,6 @@ namespace Project2
 
                 nav = Program.doc.CreateNavigator();
 
-                //print initial title
-                Proj2Toolbox.printTitle();
-
                 //Console UI
                 Proj2Toolbox.printMainMenu();
             }
