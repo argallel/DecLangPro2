@@ -272,6 +272,10 @@ namespace Project2
                 {
                     data.Insert(d, new Tuple<double, string>(d + Program.startYear, "-"));
                 }
+                for (int d = 15; d < Program.endYear - Program.startYear + 16; d++)
+                {
+                    data.Insert(d, new Tuple<double, string>(d + Program.startYear, "-"));
+                }
             }
 
 
