@@ -220,8 +220,60 @@ namespace Project2
             }
 
             //print selected data.
-            string queryText = "//region[@name='" + Program.selectedRegion + "']/source/emissions[@year <=" + Program.startYear + " and @year < " + Program.endYear + "]";
+            string queryText = "//region[@name='" + Program.selectedRegion + "']/source/emissions[@year >=" + Program.startYear + " and @year <= " + Program.endYear + "]";
             XPathNodeIterator nodeIt = Program.nav.Select(queryText);
+
+            List<Tuple<double, string>> data = new List<Tuple<double, string>>();
+
+            while (nodeIt.MoveNext())
+            {
+                
+                data.Add(new Tuple<double, string>(Convert.ToDouble(nodeIt.Current.GetAttribute("year", "")), nodeIt.Current.Value));
+            }
+
+            int listCounter = 0;
+            int yearCounter = 0;
+
+            List<double> years = new List<double>();
+            for(int k = Program.startYear; k <= Program.endYear; k++)
+            {
+                years.Add(k);
+            }
+
+
+            if(data.Count == 0)
+            {
+                data.Add(new Tuple<double, string>(Program.startYear, "-"));
+            }
+
+            while (true)
+            {
+                if (listCounter < data.Count && data[listCounter].Item1 != years[yearCounter])
+                {
+                    data.Insert(listCounter, new Tuple<double, string>(years[yearCounter], "-"));
+                }
+                yearCounter++;
+                if(yearCounter == years.Count)
+                {
+                    yearCounter = 0;
+                }
+
+                if(listCounter == (Program.endYear - Program.startYear + 1) * 8 - 1)
+                {
+                    break;
+                }
+
+                listCounter++;
+            }
+
+            while(data.Count < (Program.endYear - Program.startYear + 1) * 8 - 1)
+            {
+                for(int d = 0; d < Program.endYear - Program.startYear + 1; d++)
+                {
+                    data.Insert(d, new Tuple<double, string>(d + Program.startYear, "-"));
+                }
+            }
+
 
             queryText = "//region[1]/source/@description";
             XPathNodeIterator sourceTypeNode = Program.nav.Select(queryText);
@@ -239,13 +291,25 @@ namespace Project2
 
             Console.WriteLine("\n");
 
+            int dataCounter = 0;
+
+            double f;
+
             while (sourceTypeNode.MoveNext())
             {
                 Console.Write($"{sourceTypeNode.Current.Value, 54}");
 
                 for (int i = Program.startYear; i <= Program.endYear; i++)
                 {
-                    Console.Write($"{"Numbers",9}");
+                    if (double.TryParse(data[dataCounter].Item2, out f))
+                    {
+                        Console.Write($"{Math.Round(Convert.ToDouble(data[dataCounter].Item2), 3),9}");
+                    }
+                    else
+                    {
+                        Console.Write($"{data[dataCounter].Item2, 9}");
+                    }
+                    dataCounter++;
                 }
 
                 Console.WriteLine();
@@ -327,8 +391,67 @@ namespace Project2
             }
 
             //print selected data.
-            string queryText = "//region/source[@description = '" + Program.selectedSource + "']/emissions[@year <=" + Program.startYear + " and @year < " + Program.endYear + "]";
+            string queryText = "//region/source[@description = '" + Program.selectedSource + "']/emissions[@year >=" + Program.startYear + " and @year <= " + Program.endYear + "]";
             XPathNodeIterator sourceDataNode = Program.nav.Select(queryText);
+
+            List<Tuple<double, string>> data = new List<Tuple<double, string>>();
+
+            while (sourceDataNode.MoveNext())
+            {
+
+                data.Add(new Tuple<double, string>(Convert.ToDouble(sourceDataNode.Current.GetAttribute("year", "")), sourceDataNode.Current.Value));
+            }
+
+            int listCounter = 0;
+            int yearCounter = 0;
+
+            List<double> years = new List<double>();
+            for (int k = Program.startYear; k <= Program.endYear; k++)
+            {
+                years.Add(k);
+            }
+
+
+            if (data.Count == 0)
+            {
+                data.Add(new Tuple<double, string>(Program.startYear, "-"));
+            }
+
+            while (true)
+            {
+                if (listCounter < data.Count && data[listCounter].Item1 != years[yearCounter])
+                {
+                    data.Insert(listCounter, new Tuple<double, string>(years[yearCounter], "-"));
+                }
+                yearCounter++;
+                if (yearCounter == years.Count)
+                {
+                    yearCounter = 0;
+                }
+
+                if (listCounter == (Program.endYear - Program.startYear + 1) * 15 - 1)
+                {
+                    break;
+                }
+
+                listCounter++;
+            }
+
+            while(data.Count < (Program.endYear - Program.startYear + 1) * 15 - 1)
+            {
+                for (int d = 25; d < Program.endYear - Program.startYear + 26; d++)
+                {
+                    data.Insert(d, new Tuple<double, string>(d + Program.startYear, "-"));
+                }
+                for (int d = 30; d < Program.endYear - Program.startYear + 31; d++)
+                {
+                    data.Insert(d, new Tuple<double, string>(d + Program.startYear, "-"));
+                }
+                for (int d = 40; d < Program.endYear - Program.startYear + 41; d++)
+                {
+                    data.Insert(d, new Tuple<double, string>(d + Program.startYear, "-"));
+                }
+            }
 
             string title = "\nEmissions from " + Program.selectedSource + " (Megatonnes)";
             DymanicTitle(title);
@@ -342,14 +465,25 @@ namespace Project2
 
             Console.WriteLine("\n");
 
+            int dataCounter = 0;
+
+            double f;
+
             while (regionNameNode.MoveNext())
             {
                 Console.Write($"{regionNameNode.Current.Value,54}");
 
                 for (int i = Program.startYear; i <= Program.endYear; i++)
                 {
-                    //"Numbers" being where the value is printed
-                    Console.Write($"{"Numbers",9}");
+                    if (double.TryParse(data[dataCounter].Item2, out f))
+                    {
+                        Console.Write($"{Math.Round(Convert.ToDouble(data[dataCounter].Item2), 3),9}");
+                    }
+                    else
+                    {
+                        Console.Write($"{data[dataCounter].Item2,9}");
+                    }
+                    dataCounter++;
                 }
 
                 Console.WriteLine();
