@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * Program:         Project2.exe
+ * Course:          INFO-3138
+ * Date:            July 30, 2021
+ * Author:          K. Argall, R. Turner
+ * Description:     A helper class with methods for the main program
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.XPath;
@@ -8,7 +16,8 @@ namespace Project2
 {
     class Proj2Toolbox
     {
-
+        //Name: Print Main Menu
+        //Description: Prints the main menu
         public static void PrintMainMenu()
         {
 
@@ -62,12 +71,16 @@ namespace Project2
             }
         }
 
+        //Name: Print Title
+        //Description: Prints the title
         public static void PrintTitle()
         {
             Console.WriteLine("Greenhouse Gas Emissions in Canada");
             Console.WriteLine("==================================\n");
         }
 
+        //Name: Adjust Years
+        //Description: Takes in user input for the starting and ending years
         public static void AdjustYears()
         {
             while (true)
@@ -111,6 +124,8 @@ namespace Project2
 
         }
 
+        //Name: Select Region
+        //Description: Takes in user input to select the region to display
         public static void SelectRegion()
         {
             string queryTexts = "//region/@name";
@@ -323,6 +338,8 @@ namespace Project2
             }
         }
 
+        //Name: Select GHG Source
+        //Description: Takes in user input to select the GHG source to display
         public static void SelectGHGSrc()
         {
             string sourceQuery = "//region[1]/source/@description";
@@ -510,6 +527,8 @@ namespace Project2
 
         }
 
+        //Name: Dynamic Title
+        //Description: Displays a dashed line of length
         public static void DymanicTitle(string title)
         {
             Console.WriteLine(title);
