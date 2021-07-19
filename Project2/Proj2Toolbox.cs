@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.XPath;
-//holding for future use
-////Console.WriteLine($"{"Marks Earned",12:F1}{"Out Of",15:F1}{"Percent",15:F1}{"Course Marks",15:F1}{"Weight/100",15:F1}");
 
 
 namespace Project2
@@ -219,12 +217,14 @@ namespace Project2
                 }
             }
 
-            //print selected data.
+            
             string queryText = "//region[@name='" + Program.selectedRegion + "']/source/emissions[@year >=" + Program.startYear + " and @year <= " + Program.endYear + "]";
             XPathNodeIterator nodeIt = Program.nav.Select(queryText);
 
+            //List for data
             List<Tuple<double, string>> data = new List<Tuple<double, string>>();
 
+            //Add the data to the list
             while (nodeIt.MoveNext())
             {
                 
@@ -234,31 +234,33 @@ namespace Project2
             int listCounter = 0;
             int yearCounter = 0;
 
+            //Make a list of all the years needed
             List<double> years = new List<double>();
             for(int k = Program.startYear; k <= Program.endYear; k++)
             {
                 years.Add(k);
             }
 
-
+            //If there is no data in the list, make a single, empty node
             if(data.Count == 0)
             {
                 data.Add(new Tuple<double, string>(Program.startYear, "-"));
             }
 
+
             while (true)
             {
-                if (listCounter < data.Count && data[listCounter].Item1 != years[yearCounter])
+                if (listCounter < data.Count && data[listCounter].Item1 != years[yearCounter])  //If there is a missing year, add in a dash
                 {
                     data.Insert(listCounter, new Tuple<double, string>(years[yearCounter], "-"));
                 }
                 yearCounter++;
-                if(yearCounter == years.Count)
+                if(yearCounter == years.Count)  //Keep the year list repeating
                 {
                     yearCounter = 0;
                 }
 
-                if(listCounter == (Program.endYear - Program.startYear + 1) * 8 - 1)
+                if(listCounter == (Program.endYear - Program.startYear + 1) * 8 - 1)    //Break when the counter reaches the end of the list
                 {
                     break;
                 }
@@ -266,13 +268,14 @@ namespace Project2
                 listCounter++;
             }
 
+            //Add blank data if there are entire categories that have no data
             while(data.Count < (Program.endYear - Program.startYear + 1) * 8 - 1)
             {
-                for(int d = 0; d < Program.endYear - Program.startYear + 1; d++)
+                for(int d = 0; d < Program.endYear - Program.startYear + 1; d++)    //For agriculture
                 {
                     data.Insert(d, new Tuple<double, string>(d + Program.startYear, "-"));
                 }
-                for (int d = 15; d < Program.endYear - Program.startYear + 16; d++)
+                for (int d = 15; d < Program.endYear - Program.startYear + 16; d++) //For forestry
                 {
                     data.Insert(d, new Tuple<double, string>(d + Program.startYear, "-"));
                 }
@@ -398,8 +401,10 @@ namespace Project2
             string queryText = "//region/source[@description = '" + Program.selectedSource + "']/emissions[@year >=" + Program.startYear + " and @year <= " + Program.endYear + "]";
             XPathNodeIterator sourceDataNode = Program.nav.Select(queryText);
 
+            //List for data
             List<Tuple<double, string>> data = new List<Tuple<double, string>>();
 
+            //Add data to the list
             while (sourceDataNode.MoveNext())
             {
 
@@ -409,13 +414,14 @@ namespace Project2
             int listCounter = 0;
             int yearCounter = 0;
 
+            //Make a list of all needed years
             List<double> years = new List<double>();
             for (int k = Program.startYear; k <= Program.endYear; k++)
             {
                 years.Add(k);
             }
 
-
+            //Add some data if there is absolutely no data
             if (data.Count == 0)
             {
                 data.Add(new Tuple<double, string>(Program.startYear, "-"));
@@ -423,12 +429,13 @@ namespace Project2
 
             while (true)
             {
+                //If there is a year of data missing
                 if (listCounter < data.Count && data[listCounter].Item1 != years[yearCounter])
                 {
                     data.Insert(listCounter, new Tuple<double, string>(years[yearCounter], "-"));
                 }
                 yearCounter++;
-                if (yearCounter == years.Count)
+                if (yearCounter == years.Count) //Keep years counting within the list
                 {
                     yearCounter = 0;
                 }
@@ -441,17 +448,18 @@ namespace Project2
                 listCounter++;
             }
 
-            while(data.Count < (Program.endYear - Program.startYear + 1) * 15 - 1)
+            ////Add blank data if there are entire regions that have no data
+            while (data.Count < (Program.endYear - Program.startYear + 1) * 15 - 1)
             {
-                for (int d = 25; d < Program.endYear - Program.startYear + 26; d++)
+                for (int d = 25; d < Program.endYear - Program.startYear + 26; d++) //For Nunavut
                 {
                     data.Insert(d, new Tuple<double, string>(d + Program.startYear, "-"));
                 }
-                for (int d = 30; d < Program.endYear - Program.startYear + 31; d++)
+                for (int d = 30; d < Program.endYear - Program.startYear + 31; d++) //For Nunavut and Northwest Territories
                 {
                     data.Insert(d, new Tuple<double, string>(d + Program.startYear, "-"));
                 }
-                for (int d = 40; d < Program.endYear - Program.startYear + 41; d++)
+                for (int d = 40; d < Program.endYear - Program.startYear + 41; d++) //For Northwest Territories
                 {
                     data.Insert(d, new Tuple<double, string>(d + Program.startYear, "-"));
                 }
